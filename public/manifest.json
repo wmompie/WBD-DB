@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "WBD - Movie DB",
+  "name": "Web Blueprint Design - Movie Database Project",
   "icons": [
     {
       "src": "favicon.ico",
