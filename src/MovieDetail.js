@@ -16,7 +16,9 @@ class MovieDetail extends Component {
   async componentDidMount() {
     try {
       const res = await fetch(`
-      https://api.themoviedb.org/3/movie/${this.props.match.params.id}?api_key=1d6d0654f7271ea8cb6b808c849dda59&language=en-US`);
+      https://api.themoviedb.org/3/movie/${
+  this.props.match.params.id
+}?api_key=1d6d0654f7271ea8cb6b808c849dda59&language=en-US`);
       const movie = await res.json();
       this.setState({
         movie,
@@ -31,12 +33,14 @@ class MovieDetail extends Component {
     return (
       <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
         <MovieInfo>
-          <Overdrive id={`${movie.id}`} duration="600" animationDelay="1">
+          <Overdrive id={`${movie.id}`} duration={600} animationDelay={1}>
             <Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
           </Overdrive>
           <div>
             <h1>{movie.title}</h1>
-            <h3>{movie.release_date}</h3>
+            <h3>Release Date: {movie.release_date}</h3>
+            <p>Current Status: {movie.status}</p>
+            <p>Current Revenue: ${movie.revenue}</p>
             <p>{movie.overview}</p>
           </div>
         </MovieInfo>
@@ -52,6 +56,7 @@ const MovieWrapper = styled.div`
   background: url(${props => props.backdrop}) no-repeat;
   padding-top: 50vh;
   position: relative;
+  width: 100%;
 `;
 
 const MovieInfo = styled.div`
